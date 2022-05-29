@@ -3,6 +3,7 @@ import { Box, Image } from "@chakra-ui/react";
 // @ts-ignore
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import data from "./data.json";
+import { PreviewImageModal } from "../PreviewImageModal/PreviewImageModal";
 
 export const MyAssets: React.FunctionComponent = () => {
   return (
@@ -11,16 +12,7 @@ export const MyAssets: React.FunctionComponent = () => {
         {data.map((file) => {
           return (
             <Box key={file.id} p={2} overflow="hidden">
-              <Image
-                src={file.url}
-                alt=""
-                w="full"
-                padding={1}
-                bgColor="gray.200"
-                boxShadow="sm"
-                borderRadius="md"
-                loading="lazy"
-              />
+              <PreviewImageModal src={file.url} modalSize="6xl" />
             </Box>
           );
         })}
