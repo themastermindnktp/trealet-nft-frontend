@@ -1,16 +1,15 @@
 import {
-    Box,
-    Button,
-    Drawer,
-    DrawerBody,
-    DrawerCloseButton,
-    DrawerContent,
-    DrawerHeader,
-    DrawerOverlay,
-    Flex,
-    Link as CLink,
-    useDisclosure,
-    VStack
+  Box,
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerOverlay,
+  Flex,
+  Link as CLink,
+  useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import Link from "next/link";
@@ -25,8 +24,8 @@ export const NavBar = styled(Box)`
 
 export const Header: React.FunctionComponent = () => {
   const btnRef = React.useRef<HTMLButtonElement>(null);
-  const { isOpen, onOpen, onClose } = useDisclosure()
-    const navItems = (
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const navItems = (
     <>
       <Link href="/auctions" passHref>
         <CLink px={6} py={2} fontWeight="medium" onClick={onClose}>
@@ -38,13 +37,13 @@ export const Header: React.FunctionComponent = () => {
           Exhibitions
         </CLink>
       </Link>
-        <Link href="/me" passHref>
-          <Button as="a" colorScheme="purple" onClick={onClose}>
-            Connect Wallet
-          </Button>
-        </Link>
+      <Link href="/me" passHref>
+        <Button as="a" colorScheme="purple" onClick={onClose}>
+          Connect Wallet
+        </Button>
+      </Link>
     </>
-    );
+  );
   return (
     <NavBar w="full" position="fixed" top="0" left="0" zIndex="100">
       <Flex maxW="container.xl" py={2} px={4} mx="auto">
@@ -53,29 +52,28 @@ export const Header: React.FunctionComponent = () => {
             <Logo />
           </CLink>
         </Link>
-        <Flex ml="auto" display={{base: "flex", sm: "none", md: "flex"}}>
+        <Flex ml="auto" display={{ base: "flex", sm: "none", md: "flex" }}>
           {navItems}
         </Flex>
-          <Flex ml="auto" display={{base: "none", sm: "flex", md: "none"}}>
-              <Button bgColor="gray.200" ml={2} ref={btnRef} onClick={onOpen}>
-                  <IoMenu size={24} />
-              </Button>
-              <Drawer
-                  isOpen={isOpen}
-                  placement="right"
-                  onClose={onClose}
-                  finalFocusRef={btnRef}
-              >
-                  <DrawerOverlay />
-                  <DrawerContent>
-                      <DrawerCloseButton />
-                      <DrawerBody>
-                          <VStack>{navItems}</VStack>
-                      </DrawerBody>
-                  </DrawerContent>
-              </Drawer>
-          </Flex>
-
+        <Flex ml="auto" display={{ base: "none", sm: "flex", md: "none" }}>
+          <Button bgColor="gray.200" ml={2} ref={btnRef} onClick={onOpen}>
+            <IoMenu size={24} />
+          </Button>
+          <Drawer
+            isOpen={isOpen}
+            placement="right"
+            onClose={onClose}
+            finalFocusRef={btnRef}
+          >
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerCloseButton />
+              <DrawerBody>
+                <VStack>{navItems}</VStack>
+              </DrawerBody>
+            </DrawerContent>
+          </Drawer>
+        </Flex>
       </Flex>
     </NavBar>
   );
