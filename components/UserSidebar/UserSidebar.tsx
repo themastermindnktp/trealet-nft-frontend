@@ -14,8 +14,8 @@ export const UserSidebar: React.FunctionComponent = () => (
     <Flex justifyContent="center" mb={4}>
       <Box width="280px">
         <Avatar
-          name="KD"
           size="full"
+          height="280px"
           src="https://cdnb.artstation.com/p/assets/images/images/001/452/685/large/ernest-jan-vincent-munoz-totoro-square.jpg?1446673397"
         />
       </Box>

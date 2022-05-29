@@ -1,8 +1,20 @@
-import { Box, Button, Flex, Link as CLink } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerOverlay,
+  Flex,
+  Link as CLink,
+  useDisclosure,
+  VStack,
+} from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React from "react";
+import { IoMenu } from "react-icons/io5";
 import { Logo } from "../Logo";
 
 export const NavBar = styled(Box)`
@@ -11,10 +23,27 @@ export const NavBar = styled(Box)`
 `;
 
 export const Header: React.FunctionComponent = () => {
-  const router = useRouter();
-  const onConnectWallet = () => {
-    router.push("/me");
-  };
+  const btnRef = React.useRef<HTMLButtonElement>(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const navItems = (
+    <>
+      <Link href="/auctions" passHref>
+        <CLink px={6} py={2} fontWeight="medium" onClick={onClose}>
+          Auctions
+        </CLink>
+      </Link>
+      <Link href="/exhibitions" passHref>
+        <CLink px={6} py={2} fontWeight="medium" onClick={onClose}>
+          Exhibitions
+        </CLink>
+      </Link>
+      <Link href="/me" passHref>
+        <Button as="a" colorScheme="purple" onClick={onClose}>
+          Connect Wallet
+        </Button>
+      </Link>
+    </>
+  );
   return (
     <NavBar w="full" position="fixed" top="0" left="0" zIndex="100">
       <Flex maxW="container.xl" py={2} px={4} mx="auto">
@@ -23,20 +52,27 @@ export const Header: React.FunctionComponent = () => {
             <Logo />
           </CLink>
         </Link>
-        <Flex ml="auto">
-          <Link href="/auctions" passHref>
-            <CLink px={6} py={2} fontWeight="medium">
-              Auctions
-            </CLink>
-          </Link>
-          <Link href="/exhibitions" passHref>
-            <CLink px={6} py={2} fontWeight="medium">
-              Exhibitions
-            </CLink>
-          </Link>
-          <Button colorScheme="purple" onClick={onConnectWallet}>
-            Connect Wallet
+        <Flex ml="auto" display={{ base: "flex", sm: "none", md: "flex" }}>
+          {navItems}
+        </Flex>
+        <Flex ml="auto" display={{ base: "none", sm: "flex", md: "none" }}>
+          <Button bgColor="gray.200" ml={2} ref={btnRef} onClick={onOpen}>
+            <IoMenu size={24} />
           </Button>
+          <Drawer
+            isOpen={isOpen}
+            placement="right"
+            onClose={onClose}
+            finalFocusRef={btnRef}
+          >
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerCloseButton />
+              <DrawerBody>
+                <VStack>{navItems}</VStack>
+              </DrawerBody>
+            </DrawerContent>
+          </Drawer>
         </Flex>
       </Flex>
     </NavBar>
