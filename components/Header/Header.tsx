@@ -29,17 +29,17 @@ export const Header: React.FunctionComponent = () => {
     const navItems = (
     <>
       <Link href="/auctions" passHref>
-        <CLink px={6} py={2} fontWeight="medium">
+        <CLink px={6} py={2} fontWeight="medium" onClick={onClose}>
           Auctions
         </CLink>
       </Link>
       <Link href="/exhibitions" passHref>
-        <CLink px={6} py={2} fontWeight="medium">
+        <CLink px={6} py={2} fontWeight="medium" onClick={onClose}>
           Exhibitions
         </CLink>
       </Link>
         <Link href="/me" passHref>
-          <Button as="a" colorScheme="purple">
+          <Button as="a" colorScheme="purple" onClick={onClose}>
             Connect Wallet
           </Button>
         </Link>
@@ -69,8 +69,7 @@ export const Header: React.FunctionComponent = () => {
                   <DrawerOverlay />
                   <DrawerContent>
                       <DrawerCloseButton />
-                      <DrawerHeader>Create your account</DrawerHeader>
-                      <DrawerBody onClick={onClose}>
+                      <DrawerBody>
                           <VStack>{navItems}</VStack>
                       </DrawerBody>
                   </DrawerContent>
