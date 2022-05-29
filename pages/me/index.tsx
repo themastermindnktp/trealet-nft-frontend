@@ -16,6 +16,7 @@ import { MyAuctions } from "../../components/MyAuctions";
 import { MyTickets } from "../../components/MyTickets";
 import { Scrollable } from "../../components/Scrollable";
 import { UserSidebar } from "../../components/UserSidebar";
+import {useEffect} from "react";
 
 const Me: NextPage = () => {
   return (
@@ -28,21 +29,64 @@ const Me: NextPage = () => {
         </Box>
       </Box>
       <Box>
-        <Tabs variant="soft-rounded" colorScheme="purple">
+        <Tabs
+            isFitted={true}
+            colorScheme="purple"
+          isLazy={true}
+          lazyBehavior={"keepMounted"}
+        >
           <TabList>
-            <Tab>My assets</Tab>
-            <Tab>My tickets</Tab>
-            <Tab>My auctions</Tab>
+            <Tab>On-chain assets</Tab>
+            <Tab>Off-chain assets</Tab>
           </TabList>
           <TabPanels>
             <TabPanel px={0}>
-              <MyAssets />
+              <Tabs
+                  variant="soft-rounded" colorScheme="purple"
+                  isLazy={true}
+                  lazyBehavior={"keepMounted"}
+              >
+                <TabList>
+                  <Tab>My assets</Tab>
+                  <Tab>My tickets</Tab>
+                  <Tab>My auctions</Tab>
+                </TabList>
+                <TabPanels>
+                  <TabPanel px={0}>
+                    <MyAssets />
+                  </TabPanel>
+                  <TabPanel>
+                    <MyTickets />
+                  </TabPanel>
+                  <TabPanel>
+                    <MyAuctions />
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
             </TabPanel>
             <TabPanel>
-              <MyTickets />
-            </TabPanel>
-            <TabPanel>
-              <MyAuctions />
+              <Tabs
+                  variant="soft-rounded" colorScheme="purple"
+                  isLazy={true}
+                  lazyBehavior={"keepMounted"}
+              >
+                <TabList>
+                  <Tab>My assets</Tab>
+                  <Tab>My tickets</Tab>
+                  <Tab>My auctions</Tab>
+                </TabList>
+                <TabPanels>
+                  <TabPanel px={0}>
+                    <MyAssets />
+                  </TabPanel>
+                  <TabPanel>
+                    <MyTickets />
+                  </TabPanel>
+                  <TabPanel>
+                    <MyAuctions />
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
             </TabPanel>
           </TabPanels>
         </Tabs>
