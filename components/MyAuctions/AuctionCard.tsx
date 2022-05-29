@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { Rating } from "../Rating";
 import { PriceTag } from "./PriceTag";
-import { Auction } from "./_data";
+import { Auction } from "../../type";
 
 interface Props {
   auction: Auction;
